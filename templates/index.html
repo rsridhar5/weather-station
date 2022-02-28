@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Remote Solar Powered Weather Station</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	</head>
+	<body style="background-color: #a8b2ff;">
+		<div style="background-image: linear-gradient(to bottom, black, #a8b2ff); color: #F2F3F3; padding: 25px">
+			<h1>Remote Solar-Powered Weather Station Data:</h1>
+			<h3>Location: Irvine, CA</h3>
+			<br/>
+			<div>
+				<button id="refresh_data" onClick="window.location.reload();" class="btn btn-dark">Refresh Data</button>
+			</div>
+			<br/>
+		</div>
+
+		<div style="background-color: #a8b2ff; padding: 25px"> <!-- #a8b2ff   bdc5f2 -->
+		<table class="table table-striped" style="background-color: #bdc5f2;">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col" style="text-align: center;">Sample Time</th>
+					<th scope="col" style="text-align: center;">Average Temperature</th>
+					<th scope="col" style="text-align: center;">High Temperature</th>
+					<th scope="col" style="text-align: center;">Low Temperature</th>
+					<th scope="col" style="text-align: center;">Average Humidity (%rh)</th>
+					<th scope="col" style="text-align: center;">High Humidity (%rh)</th>
+					<th scope="col" style="text-align: center;">Low Humidity (%rh)</th>
+					<th scope="col" style="text-align: center;">Average Wind Speed (mph)</th>
+					<th scope="col" style="text-align: center;">High Wind Speed (mph)</th>
+					<th scope="col" style="text-align: center;">Low Speed (mph)</th>
+					<th scope="col" style="text-align: center;">Standard Deviation of Wind Speed</th>
+					<th scope="col" style="text-align: center;">Wind Direction (degrees East from North)</th>
+				</tr>
+			</thead>
+            <tr>
+            		<!-- Displays all of the data in tabular format -->
+            		{% if data %}
+            			{% for i in data %}
+	            			<tr>
+		            			<td style="text-align: center; font-weight: bold; font-size: 0.9em;">
+		            			{{i.date_time}}</td>
+
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.avg_temp}}&#176</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.high_temp}}&#176</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.low_temp}}&#176</td>
+
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.avg_humidity}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.high_humidity}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.low_humidity}}</td>
+
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.avg_wind_speed}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.high_wind_speed}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.low_wind_speed}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.std_wind_speed}}</td>
+								<td style="text-align: center; font-weight: bold; font-size: 1.5em;">
+								{{i.wind_direction}}</td>
+							</tr>
+						{% endfor %}
+					{% endif %}
+			</tr>
+		</table>
+		</div>
+	</body>
+</html>
+
